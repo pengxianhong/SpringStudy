@@ -3,8 +3,13 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!--spring配置文件可以任意起名，但是约定俗成就叫“applicationContext”-->
-    <!--singleton：bean默认配置，类似单例，spring容器中只会存在一个对象，参考android启动模式singleTask-->
-    <!--prototype：spring容器中会存在多个对象，参考android启动模式standard-->
-    <bean id="userDao" class="com.pengxh.dao.impl.UserDaoImpl" init-method="init" destroy-method="destroy"/>
+    <bean id="userDao" class="com.pengxh.dao.impl.UserDaoImpl">
+        <property name="userName" value="张三"/>
+        <property name="age" value="21"/>
+    </bean>
+
+    <bean id="userService" class="com.pengxh.service.impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
 </beans>

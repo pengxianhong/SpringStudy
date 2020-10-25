@@ -10,20 +10,20 @@ import com.pengxh.dao.UserDao;
  **/
 public class UserDaoImpl implements UserDao {
 
-    public UserDaoImpl() {
-        System.out.println("UserDaoImpl创建...");
+    private String userName;
+    private int age;
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public void init(){
-        System.out.println("init: ");
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override
     public void save() {
+        System.out.println(userName + "=====" + age);
         System.out.println("save running...");
-    }
-
-    public void destroy(){
-        System.out.println("destroy: ");
     }
 }

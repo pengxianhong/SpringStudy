@@ -1,6 +1,6 @@
 package com.pengxh.test;
 
-import com.pengxh.dao.UserDao;
+import com.pengxh.service.impl.UserServiceImpl;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -13,10 +13,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  **/
 public class SpringTest {
     @Test
-    //测试scope属性
     public void test1() {
         ApplicationContext app = new ClassPathXmlApplicationContext("applicationContext.xml");
-        UserDao userDao = (UserDao) app.getBean("userDao");
-        System.out.println(userDao);
+        UserServiceImpl userService = (UserServiceImpl) app.getBean("userService");
+        userService.save();
     }
 }
