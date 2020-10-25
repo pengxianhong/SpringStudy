@@ -10,10 +10,10 @@
         <module name="spring_ioc_anno" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="spring_aop" target="1.8" />
-      <module name="spring_ioc" target="1.8" />
-      <module name="spring_ioc_anno" target="1.8" />
+    <bytecodeTargetLevel target="8">
+      <module name="spring_aop" target="8" />
+      <module name="spring_ioc" target="8" />
+      <module name="spring_ioc_anno" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

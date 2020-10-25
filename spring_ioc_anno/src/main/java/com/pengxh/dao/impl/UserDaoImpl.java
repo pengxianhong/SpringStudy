@@ -1,21 +1,15 @@
 package com.pengxh.dao.impl;
 
 import com.pengxh.dao.UserDao;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 /**
- * @program: SpringStudy
- * @description: TODO
- * @author: Pengxh
- * @create: 2020-10-25 16:40
- **/
-
-/**
- * 第一步：先将配置文件的Dao层注解，采用Component注解，参数为bean id
+ * 第一步：先将配置文件的Dao层注解，采用Repository注解，参数为bean id
+ * Repository是Component的细化，用于Dao层实例化
  * 源配置如下：
  * <bean id="userDao" class="com.pengxh.dao.impl.UserDaoImpl"/>
  */
-@Component("userDao")
+@Repository("userDao")
 public class UserDaoImpl implements UserDao {
 
     @Override
