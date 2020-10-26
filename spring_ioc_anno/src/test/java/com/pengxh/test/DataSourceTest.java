@@ -2,27 +2,37 @@ package com.pengxh.test;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.pengxh.config.SpringConfiguration;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.util.ResourceBundle;
 
-/**
- * @program: SpringStudy
- * @description: TODO
- * @author: Pengxh
- * @create: 2020-10-25 15:28
- **/
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {SpringConfiguration.class})
 public class DataSourceTest {
+
+    @Autowired
+    private DataSource dataSource;
+
+    @Test
+    //测试Spring容器创建c3p0数据源
+    public void testDataSpring() throws Exception {
+        Connection connection = dataSource.getConnection();
+        System.out.println(connection);
+        connection.close();
+    }
 
     @Test
     //测试手动创建c3p0数据源
     public void testData() throws Exception {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
-        dataSource.setDriverClass("com.mysql.jdbc.Driver");
+        dataSource.setDriverClass("com.mysql.cj.jdbc.Driver");
         dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/user?serverTimezone=UTC");
         dataSource.setUser("root");
         dataSource.setPassword("root");
@@ -55,20 +65,10 @@ public class DataSourceTest {
     }
 
     @Test
-    //测试Spring容器创建c3p0数据源
-    public void testDataSpring() throws Exception {
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        DataSource dataSource = (ComboPooledDataSource) context.getBean("dataSource");
-        Connection connection = dataSource.getConnection();
-        System.out.println(connection);
-        connection.close();
-    }
-
-    @Test
     //测试手动创建druid数据源
     public void testDruidData() throws Exception {
         DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/user?serverTimezone=UTC");
         dataSource.setUsername("root");
         dataSource.setPassword("root");
