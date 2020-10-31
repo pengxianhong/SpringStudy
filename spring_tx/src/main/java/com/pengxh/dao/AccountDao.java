@@ -1,5 +1,8 @@
 package com.pengxh.dao;
 
 public interface AccountDao {
-    void daoTransfer(String outAccountName, String inAccountName, double money);
+
+    void transferOut(String outAccountName, double money);
+
+    void transferIn(String inAccountName, double money);
 }
